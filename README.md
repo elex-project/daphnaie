@@ -1,7 +1,9 @@
-# tmpl-java-library
+# Project Daphnaie
 
-Template for Java library project
+Serial I/O
 
 ---
+
 developed by Elex
+
 https://www.elex-project.com
