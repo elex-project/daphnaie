@@ -6,8 +6,8 @@ plugins {
 }
 
 group = "com.elex-project"
-version = "1.0-SNAPSHOT"
-description = ""//todo
+version = "1.2.0"
+description = "Daphnaie is for Serial I/O"
 
 repositories {
 	maven {
@@ -32,13 +32,15 @@ configurations {
 }
 
 tasks.jar {
-	manifest { // todo
-		attributes(mapOf(
+	manifest {
+		attributes(
+			mapOf(
 				"Implementation-Title" to project.name,
 				"Implementation-Version" to project.version,
 				"Implementation-Vendor" to "ELEX co.,pte.",
 				"Automatic-Module-Name" to "com.elex_project.daphnaie"
-		))
+			)
+		)
 	}
 }
 
@@ -69,21 +71,18 @@ publishing {
 		create<MavenPublication>("mavenJava") {
 			from(components["java"])
 			pom {
-				// todo
 				name.set(project.name)
 				description.set(project.description)
 				url.set("https://www.elex-project.com/")
-	
+
 				organization {
 					name.set("Elex co.,Pte.")
 					url.set("https://www.elex-project.com/")
 				}
 				licenses {
 					license {
-						// todo
-						name.set("BSD 3-Clause License")
-						url.set("licenseUrl")
-						comments.set("")
+						name.set("Apache License 2.0")
+						url.set("https://github.com/elex-project/daphnaie/blob/main/LICENSE")
 					}
 				}
 				developers {
@@ -98,9 +97,8 @@ publishing {
 						timezone.set("Asia/Seoul")
 					}
 				}
-			
+
 				scm {
-					// todo
 					connection.set("scm:git:https://github.com/elex-project/daphnaie.git")
 					developerConnection.set("scm:git:https://github.com/elex-project/daphnaie.git")
 					url.set("https://github.com/elex-project/daphnaie")
@@ -121,7 +119,7 @@ publishing {
 				password = project.findProperty("repo.password") as String
 			}
 		}
-		maven { //todo
+		maven {
 			name = "mavenGithub"
 			url = uri("https://maven.pkg.github.com/elex-project/daphnaie")
 			credentials {
@@ -139,6 +137,10 @@ dependencies {
 	compileOnly("org.projectlombok:lombok:1.18.16")
 	annotationProcessor("org.projectlombok:lombok:1.18.16")
 	testAnnotationProcessor("org.projectlombok:lombok:1.18.16")
+
+	api("com.elex-project:abraxas:4.0.3")
+	// https://mvnrepository.com/artifact/com.fazecast/jSerialComm
+	api("com.fazecast:jSerialComm:2.6.2")
 
 	testImplementation("ch.qos.logback:logback-classic:1.2.3")
 	testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
